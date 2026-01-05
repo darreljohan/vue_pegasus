@@ -24,6 +24,19 @@
             :label="'Cost'"
             :modelBinder="'cost'"
         ></base-text-input>
+        <div class="form-button-container">
+            <base-button>
+                <i class="fas fa-save"></i>
+                <span>Save</span>
+            </base-button>
+            <base-button
+                :isLink="true"
+                :link="'/schedule'"
+            >
+                <i class="fas fa-times"></i>
+                <span>Cancel</span>
+            </base-button>
+        </div>
     </base-dialog>
 </template>
 
@@ -39,5 +52,7 @@ let train = ref([
 </script>
 
 <style scoped>
-
+.form-button-container {
+    text-align: right;
+}
 </style>

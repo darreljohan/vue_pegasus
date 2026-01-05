@@ -2,8 +2,8 @@
     <base-card-row>
     <template v-slot:left>
          <div class="row">
-                <span class="label">Train</span>
-                <span class="value">Cirebon Ekspres</span>
+            <span class="label">Train</span>
+            <span class="value">Cirebon Ekspres</span>
         </div>
         <div class="row">
             <span class="label">Class</span>
