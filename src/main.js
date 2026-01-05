@@ -3,9 +3,10 @@ import BaseCard from './ui-element/BaseCard.vue'
 import BaseButton from './ui-element/BaseButton.vue';
 import BaseTitle from './ui-element/BaseTitle.vue';
 import BaseTextInput from './ui-element/BaseTextInput.vue';
-import BaseDatePicker from './ui-element/BaseDateInput.vue';
+import BaseDateInput from './ui-element/BaseDateInput.vue';
 import BaseDropdownInput from './ui-element/BaseDropdownInput.vue'
 import BaseCardRow from './ui-element/BaseCardRow.vue';
+import BaseDialog from './ui-element/BaseDialog.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -26,9 +27,10 @@ app.component('base-card', BaseCard)
 app.component('base-button', BaseButton)
 app.component('base-title', BaseTitle)
 app.component('base-text-input', BaseTextInput)
-app.component('base-date-picker', BaseDatePicker)
+app.component('base-date-input', BaseDateInput)
 app.component('base-dropdown-input', BaseDropdownInput)
 app.component('base-card-row', BaseCardRow)
+app.component('base-dialog', BaseDialog)
 
 app.mount('#app')
 

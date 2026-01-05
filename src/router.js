@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import TheLayout from "./layout/TheLayout.vue"
 import SchedulePage from "./schedule/SchedulePage.vue";
+import ScheduleUpsertForm from "./schedule/ScheduleUpsertForm.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,7 +12,13 @@ const router = createRouter({
             children:[
                 {
                     component: SchedulePage,
-                    path: '/schedule' 
+                    path: '/schedule',
+                    children:[
+                        {
+                            component: ScheduleUpsertForm,
+                            path: '/schedule/form',
+                        }
+                    ] 
                 },
             ]
         }

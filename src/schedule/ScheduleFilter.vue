@@ -10,10 +10,10 @@
                 :label="'Dept Station'" 
                 :modelBinder="'Put Model Here'"
             ></base-text-input>
-            <base-date-picker
+            <base-date-input
                 :label="'Dept. Time'"
                 :modelBinder="'Put Model Here'"
-            ></base-date-picker>
+            ></base-date-input>
             <base-dropdown-input
                 :label="'Class'"
                 :options="options"

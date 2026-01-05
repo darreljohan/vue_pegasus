@@ -1,13 +1,19 @@
 <template>
     <base-title :title="'Schedules'"></base-title>
     <main>
-        <base-button>
+        <base-button 
+            :isLink="true",
+            :link="'/schedule/form'"
+        >
             <i class="fas fa-plus"></i>
             <span>Insert New</span>
         </base-button>
         <schedule-filter></schedule-filter>
         <schedule-row></schedule-row>
     </main>
+    <teleport to="body">
+        <router-view></router-view>
+    </teleport>
 </template>
 
 <script setup>
