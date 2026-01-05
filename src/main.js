@@ -5,7 +5,7 @@ import BaseTitle from './ui-element/BaseTitle.vue';
 import BaseTextInput from './ui-element/BaseTextInput.vue';
 import BaseDatePicker from './ui-element/BaseDateInput.vue';
 import BaseDropdownInput from './ui-element/BaseDropdownInput.vue'
-
+import BaseCardRow from './ui-element/BaseCardRow.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -28,6 +28,7 @@ app.component('base-title', BaseTitle)
 app.component('base-text-input', BaseTextInput)
 app.component('base-date-picker', BaseDatePicker)
 app.component('base-dropdown-input', BaseDropdownInput)
+app.component('base-card-row', BaseCardRow)
 
 app.mount('#app')
 
