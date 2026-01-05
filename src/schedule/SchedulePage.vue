@@ -10,6 +10,7 @@
         </base-button>
         <schedule-filter></schedule-filter>
         <schedule-row></schedule-row>
+        <schedule-pagination></schedule-pagination>
     </main>
     <teleport to="body">
         <router-view></router-view>
@@ -19,6 +20,7 @@
 <script setup>
     import ScheduleFilter from './ScheduleFilter.vue';
     import ScheduleRow from './ScheduleRow.vue';
+    import SchedulePagination from './SchedulePagination.vue';
 </script>
 
 <style scoped>

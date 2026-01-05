@@ -7,6 +7,7 @@ import BaseDateInput from './ui-element/BaseDateInput.vue';
 import BaseDropdownInput from './ui-element/BaseDropdownInput.vue'
 import BaseCardRow from './ui-element/BaseCardRow.vue';
 import BaseDialog from './ui-element/BaseDialog.vue';
+import BasePagination from './ui-element/BasePagination.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -31,6 +32,7 @@ app.component('base-date-input', BaseDateInput)
 app.component('base-dropdown-input', BaseDropdownInput)
 app.component('base-card-row', BaseCardRow)
 app.component('base-dialog', BaseDialog)
+app.component('base-pagination', BasePagination)
 
 app.mount('#app')
 
