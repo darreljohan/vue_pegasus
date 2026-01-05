@@ -34,4 +34,8 @@ const props = defineProps({
     color: var(--primary-color);
     background-color: white;
 }
+
+:deep(i:first-child) {
+    margin-right: 10px;
+}
 </style>

@@ -1,6 +1,10 @@
 <template>
     <base-title :title="'Schedules'"></base-title>
     <main>
+        <base-button>
+            <i class="fas fa-plus"></i>
+            <span>Insert New</span>
+        </base-button>
         <schedule-filter></schedule-filter>
         <schedule-row></schedule-row>
     </main>
