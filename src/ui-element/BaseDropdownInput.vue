@@ -1,17 +1,26 @@
 <template>
-    <div class="row">
+   <div class="row">
         <div class="label">{{ label  }}</div>
         <div class="value">
-            <input :value="modelBinder" class="base-textbox" type="text">
+           <select class="base-dropbox" name="" id="">
+                <option 
+                v-for="option of options"
+                :value="option.value"
+                >{{ option.text  }}</option>
+           </select>
         </div>
     </div>
 </template>
 
 <script setup>
-const props = defineProps([
+import { onBeforeMount } from 'vue';
+
+let props = defineProps([
     'label',
-    'modelBinder'
+    'options'
 ])
+
+
 </script>
 
 <style scoped>
@@ -20,8 +29,6 @@ const props = defineProps([
     display: flex;
     align-items: flex-start;
 }
-
-
 .row > .label {
     color: #16a085;
     font-weight: bold;
@@ -29,16 +36,16 @@ const props = defineProps([
     padding-right: 15px;
 }
 
-.base-textbox {
-    width: 200px;
-    height: 22px;
+.base-dropbox {
+    width: 206px;
+    height: 26px;
     border: solid #95a5a6 1px;
     border-radius: 4px;
 }
 
 @media screen and (max-width: 440px) {
-    .base-textbox{
-        width: 160px;
+    .base-dropbox{
+        width: 166px;
     }
 }
 </style>

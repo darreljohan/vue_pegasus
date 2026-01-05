@@ -2,7 +2,7 @@
      <div class="row">
         <div class="label">{{ label  }}</div>
         <div class="value">
-            <input :value="modelBinder" class="base-textbox" type="date">
+            <input :value="modelBinder" class="base-datepicker" type="date">
         </div>
     </div>
 </template>
@@ -29,10 +29,16 @@ const props = defineProps([
     padding-right: 15px;
 }
 
-.base-textbox {
+.base-datepicker {
     width: 203px;
     height: 24px;
     border: solid #95a5a6 1px;
     border-radius: 4px;
+}
+
+@media screen and (max-width: 440px) {
+    .base-datepicker{
+        width: 160px;
+    }
 }
 </style>

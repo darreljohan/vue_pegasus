@@ -14,11 +14,32 @@
                 :label="'Dept. Time'"
                 :modelBinder="'Put Model Here'"
             ></base-date-picker>
+            <base-dropdown-input
+                :label="'Class'"
+                :options="options"
+            ></base-dropdown-input>
         </div>
     </base-card>
 </template>
 
 <script setup>
+import {onBeforeMount, ref} from 'vue'
+
+let options = ref([
+    {
+        value: 'ECO',
+        text: 'Economy Class'
+    },
+    {
+        value : 'BU',
+        text: 'Business Class'
+    },
+    {
+        value : "FC",
+        text: 'FirstClass'
+    }
+])
+
 
 </script>
 
