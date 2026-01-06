@@ -9,7 +9,11 @@
             <span>Insert New</span>
         </base-button>
         <schedule-filter></schedule-filter>
-        <schedule-row></schedule-row>
+        <schedule-row
+            v-for="schedule of scheduleGrid"
+            :schedule="schedule"
+            :id="schedule.id"
+        ></schedule-row>
         <schedule-pagination></schedule-pagination>
     </main>
     <teleport to="body">
@@ -18,9 +22,20 @@
 </template>
 
 <script setup>
-    import ScheduleFilter from './ScheduleFilter.vue';
-    import ScheduleRow from './ScheduleRow.vue';
-    import SchedulePagination from './SchedulePagination.vue';
+import ScheduleFilter from './ScheduleFilter.vue';
+import ScheduleRow from './ScheduleRow.vue';
+import SchedulePagination from './SchedulePagination.vue';
+import useScheduleStore from '../store/schedule/schedule-store'
+import { onBeforeMount } from 'vue';
+import { storeToRefs } from 'pinia';
+
+const scheduleStore = useScheduleStore();
+const {scheduleGrid} = storeToRefs(scheduleStore);
+
+onBeforeMount(()=>{
+    scheduleStore.getScheduleRow()
+})
+
 </script>
 
 <style scoped>

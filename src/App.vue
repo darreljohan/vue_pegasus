@@ -3,8 +3,14 @@
 </template>
 
 <script setup>
-  
+import { onBeforeMount } from 'vue';
+
+onBeforeMount(async ()=>{
+})
+
 </script>
+
+
 
 <style>
 @font-face {

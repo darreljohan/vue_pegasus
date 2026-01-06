@@ -40,7 +40,6 @@ let options = ref([
     }
 ])
 
-
 </script>
 
 <style scoped>

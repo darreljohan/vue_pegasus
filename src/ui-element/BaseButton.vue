@@ -1,5 +1,10 @@
 <template>
-    <button v-if="!isLink" @click="event" class="base-button">
+    <button 
+        v-if="!isLink" 
+        @click="event" 
+        class="base-button"
+        :class="{active : isActive}"
+    >
         <slot></slot>
     </button>
     <router-link v-else :to="link" class="base-button">
@@ -11,7 +16,8 @@
 const props = defineProps({
     isLink: {default: false},
     link: {default: "javascript:;"},
-    event: {required: false}
+    event: {required: false},
+    isActive: {required: false}
 })
 </script>
 
@@ -30,7 +36,7 @@ const props = defineProps({
     border: solid 1px #006266;
 }
 
-.base-button:hover{
+.base-button:hover, .base-button.active{
     color: var(--primary-color);
     background-color: white;
 }

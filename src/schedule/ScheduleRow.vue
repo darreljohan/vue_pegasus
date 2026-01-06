@@ -3,37 +3,37 @@
     <template v-slot:left>
          <div class="row">
             <span class="label">Train</span>
-            <span class="value">Cirebon Ekspres</span>
+            <span class="value">{{schedule.trainName}}</span>
         </div>
         <div class="row">
             <span class="label">Class</span>
-            <span class="value">Economy</span>
+            <span class="value">{{schedule.class}}</span>
         </div>
         <div class="row">
             <span class="label">Passengers</span>
-            <span class="value">5/500</span>
+            <span class="value">{{`${schedule.minPassengers}/${schedule.maxPassengers}`  }}</span>
         </div>
         <div class="row">
             <span class="label">Cost</span>
-            <span class="value">Rp80.000,00</span>
+            <span class="value">{{ `${schedule.cost}` }}</span>
         </div>
     </template>
     <template v-slot:right>
         <div class="row">
             <span class="label">Dept. Station</span>
-            <span class="value">Jakarta</span>
+            <span class="value">{{ schedule.deptStation }}</span>
         </div>
         <div class="row">
             <span class="label">Dept. Time</span>
-            <span class="value">Rabu, 8 Oktober 2025 - 11:00</span>
+            <span class="value">{{ schedule.deptTime }}</span>
         </div>
         <div class="row">
             <span class="label">Arr. Station</span>
-            <span class="value">Bandung</span>
+            <span class="value">{{ schedule.arrStation }}</span>
         </div>
         <div class="row">
             <span class="label">Arr. Time</span>
-            <span class="value">Rabu, 8 Oktober 2025 - 14:00</span>
+            <span class="value">{{ schedule.arrTime }}</span>
         </div>
         <div class="button-container">
             <base-button>
@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-
+const props = defineProps(['schedule'])
 </script>
 
 <style scoped>
