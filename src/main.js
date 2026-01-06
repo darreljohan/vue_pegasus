@@ -15,12 +15,14 @@ import "./assets/css/normalize.css";
 import "./assets/css/font-awesome.css";
 import router from './router.js'
 import { createPinia } from 'pinia';
+import configueAxios from './axios-config.js';
 
 const app = createApp(App)
 const pinia = createPinia()
 
 app.use(pinia)
 app.use(router)
+configueAxios(router)
 
 
 app.component('base-header', BaseHeader)

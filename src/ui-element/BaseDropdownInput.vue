@@ -2,11 +2,16 @@
    <div class="row">
         <div class="label">{{ label  }}</div>
         <div class="value">
-           <select class="base-dropbox" name="" id="">
-                <option value="" ></option>
+           <select 
+                v-model=model 
+                class="base-dropbox" 
+                @change="changeEvent"
+            >
+                <option value=""></option>
                 <option 
-                v-for="option of options"
-                :value="option.value"
+                    v-for="option of options"
+                    :value="option.value"
+                    :key="option.value"
                 >{{ option.text  }}</option>
            </select>
         </div>
@@ -16,11 +21,12 @@
 <script setup>
 import { onBeforeMount } from 'vue';
 
+let model = defineModel()
 let props = defineProps([
     'label',
-    'options'
+    'options',
+    'changeEvent'
 ])
-
 
 </script>
 
