@@ -9,6 +9,10 @@ const useStore = defineStore(
                 scheduleGrid : [],
                 page: 1,
                 totalPages: null,
+                trainName: "",
+                deptStation: "",
+                deptTime : null,
+                trainClass: ""
             }
         },
         actions

@@ -3,6 +3,7 @@
         <div class="label">{{ label  }}</div>
         <div class="value">
            <select class="base-dropbox" name="" id="">
+                <option value="" ></option>
                 <option 
                 v-for="option of options"
                 :value="option.value"

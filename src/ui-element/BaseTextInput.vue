@@ -2,16 +2,28 @@
     <div class="row">
         <div class="label">{{ label  }}</div>
         <div class="value">
-            <input :value="modelBinder" class="base-textbox" type="text">
+            <input
+                v-model="model" 
+                class="base-textbox" 
+                type="text" 
+                @change="changeEvent"    
+            >
         </div>
     </div>
 </template>
 
 <script setup>
+import { onBeforeMount } from 'vue';
+
 const props = defineProps([
     'label',
-    'modelBinder'
+    'modelValue',
+    'changeEvent'
 ])
+
+const model = defineModel()
+
+
 </script>
 
 <style scoped>

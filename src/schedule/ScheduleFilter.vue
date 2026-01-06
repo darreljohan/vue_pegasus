@@ -4,15 +4,18 @@
             <h2>Filter By</h2>
             <base-text-input 
                 :label="'Train Name'" 
-                :modelBinder="'Put Model Here'"
+                v-model="trainName"
+                :changeEvent="changes"
             ></base-text-input>
             <base-text-input 
                 :label="'Dept Station'" 
-                :modelBinder="'Put Model Here'"
+                v-model="deptStation"
+                :changeEvent="changes"
             ></base-text-input>
             <base-date-input
                 :label="'Dept. Time'"
-                :modelBinder="'Put Model Here'"
+                v-model="deptTime"
+                :changeEvent="changes"
             ></base-date-input>
             <base-dropdown-input
                 :label="'Class'"
@@ -24,6 +27,11 @@
 
 <script setup>
 import {onBeforeMount, ref} from 'vue'
+import { storeToRefs } from 'pinia'
+import useScheduleStore from '../store/schedule/schedule-store'
+
+let scheduleStore = useScheduleStore();
+let {trainName, deptStation, deptTime, trainClass} = storeToRefs(scheduleStore)
 
 let options = ref([
     {
@@ -39,6 +47,11 @@ let options = ref([
         text: 'FirstClass'
     }
 ])
+
+let changes = ()=>{
+    scheduleStore.page = 1
+    scheduleStore.getScheduleRow();
+}
 
 </script>
 

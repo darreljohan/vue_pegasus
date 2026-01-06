@@ -2,16 +2,25 @@
      <div class="row">
         <div class="label">{{ label  }}</div>
         <div class="value">
-            <input :value="modelBinder" class="base-datepicker" type="date">
+            <input 
+                v-model="model" 
+                class="base-datepicker" 
+                type="date"
+                @change="changeEvent"
+            >
         </div>
     </div>
 </template>
 
 <script setup>
+
 const props = defineProps([
     'label',
-    'modelBinder'
+    'changeEvent'
 ])
+
+const model = defineModel()
+
 </script>
 
 <style scoped>

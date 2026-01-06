@@ -18,11 +18,11 @@
         ></base-dropdown-input>
         <base-date-input
             :label="'Dept. Time *'"
-            :modelBinder="'date'"
+            :modelValue="'date'"
         ></base-date-input>
         <base-text-input
             :label="'Cost'"
-            :modelBinder="'cost'"
+            :modelValue="'cost'"
         ></base-text-input>
         <div class="form-button-container">
             <base-button>

@@ -2,8 +2,17 @@ import axios from "axios";
 
 export default {
 
+    triggerTest(){
+        console.log(this.triggerTest)
+    },
     async getScheduleRow(){
-        const response =  await axios.get(`http://localhost:7060/api/schedule?classCode=ALL&page=${this.page}`)
+        const response =  await axios.get(`http://localhost:7060/api/schedule`,{
+            params:{
+                trainName : this.trainName,
+                departureStation : this.deptStation,
+                departureTime: this.deptTime
+            }
+        })
         let cleanSchedule = []
         for(let schedule of response.data.content){
             const [trainData, trainClass, onboardSchedule, departureStation, arrivalStation] = await Promise.all([
