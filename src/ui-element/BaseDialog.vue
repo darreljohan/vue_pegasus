@@ -2,11 +2,8 @@
     <div class="base-modal">
         <div class="base-dialog">
             <header>
-                <h3>Schedule Form</h3>
-                <!-- <button type="button" class="close-button">
-                    <i class="fas fa-times"></i>
-                </button> -->
-                <router-link to="/schedule" class="close-button" >
+                <h3>{{ title }}</h3>
+                <router-link :to="link" class="close-button" >
                     <i class="fas fa-times"></i>
                 </router-link>
             </header>
@@ -16,7 +13,7 @@
 </template>
 
 <script setup>
-const props = defineProps(['link'])
+const props = defineProps(['link', 'title'])
 </script>
 
 <style scoped>

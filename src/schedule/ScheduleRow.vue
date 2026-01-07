@@ -43,7 +43,10 @@
                     <i class="fas fa-edit"></i>
                     <span>Update</span>
                 </base-button>
-                <base-button>
+                <base-button
+                    :isLink="true"
+                    :link="`/schedule/delete/${schedule.id}`"
+                >
                     <i class="fas fa-trash"></i>
                     <span>Remove</span>
                 </base-button>

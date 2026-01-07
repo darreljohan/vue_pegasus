@@ -1,5 +1,8 @@
 <template>
-  <base-dialog>
+  <base-dialog 
+    :title="'Schedule Form'"
+    :link="'/schedule'"
+  >
     <base-dropdown-input
       :label="'Train *'"
       :options="trainOption"

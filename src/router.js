@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import TheLayout from "./layout/TheLayout.vue"
 import SchedulePage from "./schedule/SchedulePage.vue";
 import ScheduleUpsertForm from "./schedule/ScheduleUpsertForm.vue";
+import ScheduleDeleteConfirmationForm from "./schedule/ScheduleDeleteConfirmationForm.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
                         {
                             component: ScheduleUpsertForm,
                             path: '/schedule/form/:id?',
+                            props: true
+                        },
+                        {
+                            component: ScheduleDeleteConfirmationForm,
+                            path: '/schedule/delete/:id',
                             props: true
                         }
                     ] 

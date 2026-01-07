@@ -68,6 +68,11 @@ export default {
     return response.data
   },
 
+  async deleteScheduleById(id){
+    let response = await axios.delete(`/schedule/${id}`)
+    return response
+  },
+
   async enrichTrainCode(trainCode) {
     let trainCodeResponse = await axios.get(
       `/train/one/${trainCode}`
