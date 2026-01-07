@@ -8,7 +8,10 @@
                 type="text" 
                 @change="changeEvent"    
             >
-            <div v-for="message of validationMessages" class="validation-message">{{ message }}</div>
+             <base-validation-message 
+                v-for="message of validationMessages"
+                :message="message"
+            ></base-validation-message>
         </div>
          
     </div>

@@ -3,6 +3,7 @@ import TheLayout from "./components/layout/TheLayout.vue"
 import SchedulePage from "./components/schedule/SchedulePage.vue";
 import ScheduleUpsertForm from "./components/schedule/ScheduleUpsertForm.vue";
 import ScheduleDeleteConfirmationForm from "./components/schedule/ScheduleDeleteConfirmationForm.vue";
+import PassengerPage from "./components/passenger/PassengerPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -27,6 +28,10 @@ const router = createRouter({
                         }
                     ] 
                 },
+                {
+                    component: PassengerPage,
+                    path: '/passenger',
+                }
             ]
         }
     ]

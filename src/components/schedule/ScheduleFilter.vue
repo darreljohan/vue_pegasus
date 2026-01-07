@@ -46,6 +46,7 @@ let changes = () => {
 onBeforeMount(async () => {
   options.value = await scheduleStore.getTrainClassDropdown();
 });
+
 </script>
 
 <style scoped>

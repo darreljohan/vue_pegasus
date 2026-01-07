@@ -14,7 +14,10 @@
                     :key="option.value"
                 >{{ option.text  }}</option>
            </select>
-            <div v-for="message of validationMessages" class="validation-message">{{ message }}</div>
+             <base-validation-message 
+                v-for="message of validationMessages"
+                :message="message"
+            ></base-validation-message>
         </div>
     </div>
 </template>
@@ -50,15 +53,6 @@ let props = defineProps([
     height: 26px;
     border: solid #95a5a6 1px;
     border-radius: 4px;
-}
-
-.validation-message {
-    background-color: #e74c3c;
-    color: white;
-    margin: 5px 0;
-    padding: 6px;
-    border-radius: 4px;
-    font-size: 12px;
 }
 
 @media screen and (max-width: 440px) {

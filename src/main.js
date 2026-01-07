@@ -8,6 +8,7 @@ import BaseDropdownInput from './components/ui-element/BaseDropdownInput.vue'
 import BaseCardRow from './components/ui-element/BaseCardRow.vue';
 import BaseDialog from './components/ui-element/BaseDialog.vue';
 import BasePagination from './components/ui-element/BasePagination.vue';
+import BaseValidationMessage from './components/ui-element/BaseValidationMessage.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -35,6 +36,7 @@ app.component('base-dropdown-input', BaseDropdownInput)
 app.component('base-card-row', BaseCardRow)
 app.component('base-dialog', BaseDialog)
 app.component('base-pagination', BasePagination)
+app.component('base-validation-message', BaseValidationMessage)
 
 app.mount('#app')
 

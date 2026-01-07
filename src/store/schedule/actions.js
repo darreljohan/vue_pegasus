@@ -15,8 +15,25 @@ export default {
         page: this.pagination.page
       },
     });
-    let cleanSchedule = [];
-    for (let schedule of response.data.content) {
+
+    // let cleanSchedule = [];
+    // for (let schedule of response.data.content) {
+    //   let enrichedSchedule = await this.enrichSchedule(schedule)
+    //   cleanSchedule.push(enrichedSchedule);
+    // }
+
+    let cleanSchedule = await Promise.all(
+        response.data.content.map(schedule => {
+          return this.enrichSchedule(schedule)
+        }
+      )
+    )
+
+    this.grid = cleanSchedule;
+    this.pagination.totalPages = response.data.totalPages;
+  },
+
+  async enrichSchedule(schedule){
       const [
         trainData,
         trainClass,
@@ -36,7 +53,7 @@ export default {
         arrivalTime.setMinutes(arrivalTime.getMinutes() + schedule.duration)
       );
 
-      cleanSchedule.push({
+      return{
         id: schedule.id,
         trainName: trainData.name,
         class: trainClass.name,
@@ -48,11 +65,7 @@ export default {
         arrStation: arrivalStation.name,
         arrTime: arrivalTime,
         duration: schedule.duration,
-      });
-    }
-    debugger
-    this.grid = cleanSchedule;
-    this.pagination.totalPages = response.data.totalPages;
+      }
   },
 
   async upsertSchedule({ payload, keyName }) {

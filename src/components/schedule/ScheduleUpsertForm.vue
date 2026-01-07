@@ -39,9 +39,10 @@
       v-model="input.cost"
       :validationMessages="validation?.cost"
     ></base-text-input>
-    <div v-for="message of validation.otherMessages" class="validation-message">
-      {{ message }}
-    </div>
+     <base-validation-message 
+        v-for="message of validation.otherMessages"
+        :message="message"
+      ></base-validation-message>
     <div class="form-button-container">
       <base-button @click="submit">
         <i class="fas fa-save"></i>
@@ -60,6 +61,7 @@ import { onBeforeMount, ref } from "vue";
 import useScheduleStore from "../../store/schedule/schedule-store";
 import useTrainStore from "../../store/train/train-store";
 import useTrainStationStore from "../../store/trainStation/train-station";
+import { useRouter } from "vue-router";
 
 const scheduleStore = useScheduleStore();
 const trainStore = useTrainStore();
@@ -73,6 +75,7 @@ const trainStationOption = ref([]);
 
 const input = ref({});
 const validation = ref({});
+const router = useRouter()
 
 let submit = async () => {
   console.log(input.value);
@@ -102,6 +105,7 @@ let submit = async () => {
   }
 
   scheduleStore.refreshGrid();
+  router.push('/schedule')
 };
 
 onBeforeMount(async () => {
