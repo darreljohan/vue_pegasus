@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import TheLayout from "./layout/TheLayout.vue"
-import SchedulePage from "./schedule/SchedulePage.vue";
-import ScheduleUpsertForm from "./schedule/ScheduleUpsertForm.vue";
-import ScheduleDeleteConfirmationForm from "./schedule/ScheduleDeleteConfirmationForm.vue";
+import TheLayout from "./components/layout/TheLayout.vue"
+import SchedulePage from "./components/schedule/SchedulePage.vue";
+import ScheduleUpsertForm from "./components/schedule/ScheduleUpsertForm.vue";
+import ScheduleDeleteConfirmationForm from "./components/schedule/ScheduleDeleteConfirmationForm.vue";
 
 const router = createRouter({
     history: createWebHistory(),

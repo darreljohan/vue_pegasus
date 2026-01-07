@@ -4,13 +4,15 @@ export default {
   triggerTest() {
     console.log(this.triggerTest);
   },
-  async getScheduleRow() {
+  async refreshGrid() {
+    console.log('refresh')
     const response = await axios.get(`/schedule`, {
       params: {
-        trainName: this.trainName,
-        departureStation: this.deptStation,
-        departureTime: this.deptTime,
-        classCode: this.trainClass,
+        trainName: this.filter.trainName,
+        departureStation: this.filter.deptStation,
+        departureTime: this.filter.deptTime,
+        classCode: this.filter.trainClass,
+        page: this.pagination.page
       },
     });
     let cleanSchedule = [];
@@ -48,60 +50,51 @@ export default {
         duration: schedule.duration,
       });
     }
-    this.scheduleGrid = cleanSchedule;
-    this.totalPages = response.data.totalPages;
+    debugger
+    this.grid = cleanSchedule;
+    this.pagination.totalPages = response.data.totalPages;
   },
 
-  async upsertSchedule({payload, keyName}){
-    let method = 'post'
-    if(payload[keyName]){
-      method= 'put'
+  async upsertSchedule({ payload, keyName }) {
+    let method = "post";
+    if (payload[keyName]) {
+      method = "put";
     }
-    let response = await axios[method]('/schedule', payload)
-    
-    return response
+    let response = await axios[method]("/schedule", payload);
+
+    return response;
   },
 
-  async findScheduleById(id){
-    console.log('run')
-    let response = await axios.get(`/schedule/one/${id}`)
-    return response.data
+  async findScheduleById(id) {
+    console.log("run");
+    let response = await axios.get(`/schedule/one/${id}`);
+    return response.data;
   },
 
-  async deleteScheduleById(id){
-    let response = await axios.delete(`/schedule/${id}`)
-    return response
+  async deleteScheduleById(id) {
+    let response = await axios.delete(`/schedule/${id}`);
+    return response;
   },
 
   async enrichTrainCode(trainCode) {
-    let trainCodeResponse = await axios.get(
-      `/train/one/${trainCode}`
-    );
+    let trainCodeResponse = await axios.get(`/train/one/${trainCode}`);
     return trainCodeResponse.data;
   },
 
   async enrichTrainClass(trainClassCode) {
-    let trainClassResponse = await axios.get(
-      `/trainClass/${trainClassCode}`
-    );
+    let trainClassResponse = await axios.get(`/trainClass/${trainClassCode}`);
     return trainClassResponse.data;
   },
   async enrichOnboardSchedule(scheduleId) {
-    let onboardSchedule = await axios.get(
-      `/passenger/onBoard/${scheduleId}`
-    );
+    let onboardSchedule = await axios.get(`/passenger/onBoard/${scheduleId}`);
     return onboardSchedule.data;
   },
   async enrichTrainStation(trainStation) {
-    let trainStationResponse = await axios.get(
-      `/trainStation/${trainStation}`
-    );
+    let trainStationResponse = await axios.get(`/trainStation/${trainStation}`);
     return trainStationResponse.data;
   },
   async getTrainClassDropdown() {
-    let trainDropdownResponse = await axios.get(
-      "/trainClass"
-    );
+    let trainDropdownResponse = await axios.get("/trainClass");
     return trainDropdownResponse.data;
   },
 };

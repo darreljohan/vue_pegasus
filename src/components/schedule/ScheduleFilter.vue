@@ -4,22 +4,22 @@
       <h2>Filter By</h2>
       <base-text-input
         :label="'Train Name'"
-        v-model="trainName"
+        v-model="filter.trainName"
         :changeEvent="changes"
       ></base-text-input>
       <base-text-input
         :label="'Dept Station'"
-        v-model="deptStation"
+        v-model="filter.deptStation"
         :changeEvent="changes"
       ></base-text-input>
       <base-date-input
         :label="'Dept. Time'"
-        v-model="deptTime"
+        v-model="filter.deptTime"
         :changeEvent="changes"
       ></base-date-input>
       <base-dropdown-input
         :label="'Class'"
-        v-model="trainClass"
+        v-model="filter.trainClass"
         :options="options"
         :changeEvent="changes"
       ></base-dropdown-input>
@@ -30,17 +30,17 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { storeToRefs } from "pinia";
-import useScheduleStore from "../store/schedule/schedule-store";
+import useScheduleStore from "../../store/schedule/schedule-store";
 
 let scheduleStore = useScheduleStore();
-let { trainName, deptStation, deptTime, trainClass } =
-  storeToRefs(scheduleStore);
+
+let { filter } = storeToRefs(scheduleStore);
 
 let options = ref([]);
 
 let changes = () => {
   scheduleStore.page = 1;
-  scheduleStore.getScheduleRow();
+  scheduleStore.refreshGrid();
 };
 
 onBeforeMount(async () => {

@@ -8,7 +8,7 @@
                 <i class="fas fa-angle-double-left"></i>
                 <span>First</span>
             </base-button>
-            <base-button v-if="page - 1 > 1" :event="()=>{page-1}">
+            <base-button v-if="page - 1 > 1" :event="()=>{selectPage(page-1)}">
                 {{ page -1 }}
             </base-button>
             <base-button v-if="page != 1":event="()=>{selectPage(page)}" :isActive="true">

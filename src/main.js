@@ -1,13 +1,13 @@
-import BaseHeader from './ui-element/BaseHeader.vue';
-import BaseCard from './ui-element/BaseCard.vue'
-import BaseButton from './ui-element/BaseButton.vue';
-import BaseTitle from './ui-element/BaseTitle.vue';
-import BaseTextInput from './ui-element/BaseTextInput.vue';
-import BaseDateInput from './ui-element/BaseDateInput.vue';
-import BaseDropdownInput from './ui-element/BaseDropdownInput.vue'
-import BaseCardRow from './ui-element/BaseCardRow.vue';
-import BaseDialog from './ui-element/BaseDialog.vue';
-import BasePagination from './ui-element/BasePagination.vue';
+import BaseHeader from './components/ui-element/BaseHeader.vue';
+import BaseCard from './components/ui-element/BaseCard.vue'
+import BaseButton from './components/ui-element/BaseButton.vue';
+import BaseTitle from './components/ui-element/BaseTitle.vue';
+import BaseTextInput from './components/ui-element/BaseTextInput.vue';
+import BaseDateInput from './components/ui-element/BaseDateInput.vue';
+import BaseDropdownInput from './components/ui-element/BaseDropdownInput.vue'
+import BaseCardRow from './components/ui-element/BaseCardRow.vue';
+import BaseDialog from './components/ui-element/BaseDialog.vue';
+import BasePagination from './components/ui-element/BasePagination.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'

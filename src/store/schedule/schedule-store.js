@@ -6,13 +6,18 @@ const useStore = defineStore(
     {
         state(){
             return{
-                scheduleGrid : [],
-                page: 1,
-                totalPages: null,
-                trainName: "",
-                deptStation: "",
-                deptTime : null,
-                trainClass: ""
+                grid : [],
+                pagination:{
+                    page: 1,
+                    totalPages: null,
+                },
+                filter:{
+                    trainName: "",
+                    deptStation: "",
+                    deptTime : null,
+                    trainClass: ""
+                }
+                
             }
         },
         actions

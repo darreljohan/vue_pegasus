@@ -1,7 +1,7 @@
 <template>
      <base-header>
           <template v-slot:label :class="logo">
-               <img src="../assets/logo.png" alt="logo" class="logo">
+               <img src="../../assets/logo.png" alt="logo" class="logo">
                <span>PEGASUS</span>
           </template>
           <template v-slot:value>
