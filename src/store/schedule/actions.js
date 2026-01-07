@@ -35,6 +35,7 @@ export default {
       );
 
       cleanSchedule.push({
+        id: schedule.id,
         trainName: trainData.name,
         class: trainClass.name,
         minPassengers: onboardSchedule.totalElements,
@@ -49,6 +50,22 @@ export default {
     }
     this.scheduleGrid = cleanSchedule;
     this.totalPages = response.data.totalPages;
+  },
+
+  async upsertSchedule({payload, keyName}){
+    let method = 'post'
+    if(payload[keyName]){
+      method= 'put'
+    }
+    let response = await axios[method]('/schedule', payload)
+    
+    return response
+  },
+
+  async findScheduleById(id){
+    console.log('run')
+    let response = await axios.get(`/schedule/one/${id}`)
+    return response.data
   },
 
   async enrichTrainCode(trainCode) {

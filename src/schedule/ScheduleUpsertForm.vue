@@ -3,28 +3,43 @@
     <base-dropdown-input
       :label="'Train *'"
       :options="trainOption"
-      v-model="input.train"
+      v-model="input.trainCode"
+      :validationMessages="validation?.trainCode"
     ></base-dropdown-input>
     <base-dropdown-input
       :label="'Class *'"
       :options="trainClassOption"
-      v-model="input.trainClass"
+      v-model="input.trainClassCode"
+      :validationMessages="validation?.trainClassCode"
     ></base-dropdown-input>
     <base-dropdown-input
       :label="'Dept. Station *'"
       :options="trainStationOption"
-      v-model="input.DepartureStation"
+      v-model="input.departureStationId"
+      :validationMessages="validation?.departureStationId"
     ></base-dropdown-input>
     <base-dropdown-input
       :label="'Arr. Station *'"
       :options="trainStationOption"
-      v-Model="input.ArrivalStation"
+      v-model="input.arrivalStationId"
+      :validationMessages="validation?.arrivalStationId"
     ></base-dropdown-input>
     <base-date-input
       :label="'Dept. Time *'"
-      v-model="input.date"
+      v-model="input.departureTime"
+      :validationMessages="validation?.departureTime"
     ></base-date-input>
-    <base-text-input :label="'Cost'" v-model="input.cost"></base-text-input>
+    <base-text-input 
+      :label="'Duration'" 
+      v-model="input.duration"
+      :validationMessages="validation?.duration"
+      ></base-text-input>
+    <base-text-input 
+      :label="'Cost'" 
+      v-model="input.cost"
+      :validationMessages="validation?.cost"  
+    ></base-text-input>
+    <div v-for="message of validation.otherMessages" class="validation-message">{{ message }}</div>
     <div class="form-button-container">
       <base-button @click="submit">
         <i class="fas fa-save"></i>
@@ -48,19 +63,45 @@ const scheduleStore = useScheduleStore();
 const trainStore = useTrainStore()
 const trainStationStore = useTrainStationStore()
 
+const props = defineProps(['id'])
+
 const trainClassOption = ref([])
 const trainOption = ref([])
 const trainStationOption = ref([])
 
 const input = ref({})
+const validation = ref({})
 
-let submit = ()=>{
+let submit = async()=>{
     console.log(input.value)
-    debugger
+    validation.value = {}
+    if(!input.value.departureTime){
+      validation.value.departureTime ??= []
+      validation.value.departureTime.push('Please Input Departure Time')
+    }else{
+      input.value.departureTime = new Date(input.value.departureTime).toISOString().slice(0, 16)
+    }
 
+    let response = await scheduleStore.upsertSchedule({payload: input.value, keyName:props.id})
+    if(response.status == 422){
+      for(let validate of response.data){
+        if(validate.field == null){
+          validation.value.otherMessages ??= []
+          validation.value.otherMessages.push(validate.defaultMessage)
+        }
+        validation.value[validate.field] ??= []
+        validation.value[validate.field].push(validate.defaultMessage)
+      }
+    }
+
+    scheduleStore.getScheduleRow()
 }
 
 onBeforeMount(async ()=>{
+    if(props.id == null || props.id !== ""){
+      input.value = await scheduleStore.findScheduleById(props.id)
+    }
+
     trainOption.value = await trainStore.getTrainDropdown()
     trainClassOption.value = await scheduleStore.getTrainClassDropdown()
     trainStationOption.value = await trainStationStore.getTrainStationDropdown()
@@ -71,4 +112,14 @@ onBeforeMount(async ()=>{
 .form-button-container {
   text-align: right;
 }
+
+.validation-message {
+    background-color: #e74c3c;
+    color: white;
+    margin: 5px 0;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
 </style>

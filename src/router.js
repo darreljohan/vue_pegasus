@@ -16,7 +16,8 @@ const router = createRouter({
                     children:[
                         {
                             component: ScheduleUpsertForm,
-                            path: '/schedule/form',
+                            path: '/schedule/form/:id?',
+                            props: true
                         }
                     ] 
                 },

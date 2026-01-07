@@ -3,9 +3,12 @@
         <div class="base-dialog">
             <header>
                 <h3>Schedule Form</h3>
-                <button type="button" class="close-button">
+                <!-- <button type="button" class="close-button">
                     <i class="fas fa-times"></i>
-                </button>
+                </button> -->
+                <router-link to="/schedule" class="close-button" >
+                    <i class="fas fa-times"></i>
+                </router-link>
             </header>
             <slot></slot>
         </div>
@@ -13,7 +16,7 @@
 </template>
 
 <script setup>
-
+const props = defineProps(['link'])
 </script>
 
 <style scoped>
@@ -56,6 +59,7 @@
     border-radius: 50%;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 }
 
 </style>

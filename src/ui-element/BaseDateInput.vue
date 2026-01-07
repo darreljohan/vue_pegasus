@@ -8,6 +8,7 @@
                 type="date"
                 @change="changeEvent"
             >
+            <div v-for="message of validationMessages" class="validation-message">{{ message }}</div>
         </div>
     </div>
 </template>
@@ -16,7 +17,8 @@
 
 const props = defineProps([
     'label',
-    'changeEvent'
+    'changeEvent',
+    'validationMessages'
 ])
 
 const model = defineModel()
@@ -43,6 +45,15 @@ const model = defineModel()
     height: 24px;
     border: solid #95a5a6 1px;
     border-radius: 4px;
+}
+
+.validation-message {
+    background-color: #e74c3c;
+    color: white;
+    margin: 5px 0;
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 12px;
 }
 
 @media screen and (max-width: 440px) {
