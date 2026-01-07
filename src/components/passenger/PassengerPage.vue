@@ -1,7 +1,7 @@
 <template>
-    <base-title :title="'Schedules'"></base-title>
+    <base-title :title="'Passenger'"></base-title>
     <main>
-        <base-button :isLink="true" , :link="'/schedule/form'">
+        <base-button :isLink="true" , :link="'/passenger/form'">
             <i class="fas fa-plus"></i>
             <span>Insert New</span>
         </base-button>
@@ -9,10 +9,12 @@
         <passenger-row 
             v-for="passenger of grid"
             :passenger="passenger"
-            :id="passenger.id"
         ></passenger-row>
         <passenger-pagination></passenger-pagination>
     </main>
+    <teleport to="body">
+        <router-view></router-view>
+    </teleport>
 </template>
 
 <script setup>

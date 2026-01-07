@@ -4,6 +4,8 @@ import SchedulePage from "./components/schedule/SchedulePage.vue";
 import ScheduleUpsertForm from "./components/schedule/ScheduleUpsertForm.vue";
 import ScheduleDeleteConfirmationForm from "./components/schedule/ScheduleDeleteConfirmationForm.vue";
 import PassengerPage from "./components/passenger/PassengerPage.vue";
+import PassengerUpsertForm from "./components/passenger/PassengerUpsertForm.vue";
+import PassengerDeleteConfirmationForm from "./components/passenger/PassengerDeleteConfirmationForm.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -31,7 +33,20 @@ const router = createRouter({
                 {
                     component: PassengerPage,
                     path: '/passenger',
-                }
+                    children:[
+                        {
+                            component: PassengerUpsertForm,
+                            path: '/passenger/form/:username?',
+                            props: true
+                        },
+                        {
+                            component: PassengerDeleteConfirmationForm,
+                            path: '/passenger/delete/:username',
+                            props: true
+                        }
+                    ]
+                },
+                
             ]
         }
     ]

@@ -4,16 +4,30 @@
             <h2>Filter By</h2>
             <base-text-input
                 :label="'First Name'"
-            ></base-text-input>
+                v-model="filter.firstName"
+                :changeEvent="changes"
+            ></base-text-input> 
             <base-text-input
                 :label="'Last Name'"
+                v-model="filter.lastName"
+                :changeEvent="changes"
             ></base-text-input>
         </div>
     </base-card>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
+import usePassengerStore from '../../store/passenger/passenger-store';
 
+const passengerStore = usePassengerStore();
+const {filter} = storeToRefs(passengerStore)
+
+const changes = async () => {
+    debugger
+  passengerStore.page = 1;
+    await passengerStore.refreshGrid();
+};
 
 </script>
 

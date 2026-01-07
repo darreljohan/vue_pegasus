@@ -5,14 +5,14 @@ export default {
     console.log(this.triggerTest);
   },
   async refreshGrid() {
-    console.log('refresh')
+    console.log("refresh");
     const response = await axios.get(`/schedule`, {
       params: {
         trainName: this.filter.trainName,
         departureStation: this.filter.deptStation,
         departureTime: this.filter.deptTime,
         classCode: this.filter.trainClass,
-        page: this.pagination.page
+        page: this.pagination.page,
       },
     });
 
@@ -23,68 +23,73 @@ export default {
     // }
 
     let cleanSchedule = await Promise.all(
-        response.data.content.map(schedule => {
-          return this.enrichSchedule(schedule)
-        }
-      )
-    )
+      response.data.content.map((schedule) => {
+        return this.enrichSchedule(schedule);
+      })
+    );
 
     this.grid = cleanSchedule;
     this.pagination.totalPages = response.data.totalPages;
   },
 
-  async enrichSchedule(schedule){
-      const [
-        trainData,
-        trainClass,
-        onboardSchedule,
-        departureStation,
-        arrivalStation,
-      ] = await Promise.all([
-        this.enrichTrainCode(schedule.trainCode),
-        this.enrichTrainClass(schedule.trainClassCode),
-        this.enrichOnboardSchedule(schedule.id),
-        this.enrichTrainStation(schedule.departureStationId),
-        this.enrichTrainStation(schedule.arrivalStationId),
-      ]);
+  async enrichSchedule(schedule) {
+    const [
+      trainData,
+      trainClass,
+      onboardSchedule,
+      departureStation,
+      arrivalStation,
+    ] = await Promise.all([
+      this.enrichTrainCode(schedule.trainCode),
+      this.enrichTrainClass(schedule.trainClassCode),
+      this.enrichOnboardSchedule(schedule.id),
+      this.enrichTrainStation(schedule.departureStationId),
+      this.enrichTrainStation(schedule.arrivalStationId),
+    ]);
 
-      let arrivalTime = new Date(schedule.departureTime);
-      arrivalTime = new Date(
-        arrivalTime.setMinutes(arrivalTime.getMinutes() + schedule.duration)
-      );
+    let arrivalTime = new Date(schedule.departureTime);
+    arrivalTime = new Date(
+      arrivalTime.setMinutes(arrivalTime.getMinutes() + schedule.duration)
+    );
 
-      return{
-        id: schedule.id,
-        trainName: trainData.name,
-        class: trainClass.name,
-        minPassengers: onboardSchedule.totalElements,
-        maxPassengers: trainData.maxPassengers,
-        cost: schedule.cost,
-        deptStation: departureStation.name,
-        deptTime: new Date(schedule.departureTime),
-        arrStation: arrivalStation.name,
-        arrTime: arrivalTime,
-        duration: schedule.duration,
-      }
+    return {
+      id: schedule.id,
+      trainName: trainData.name,
+      class: trainClass.name,
+      minPassengers: onboardSchedule.totalElements,
+      maxPassengers: trainData.maxPassengers,
+      cost: schedule.cost,
+      deptStation: departureStation.name,
+      deptTime: new Date(schedule.departureTime),
+      arrStation: arrivalStation.name,
+      arrTime: arrivalTime,
+      duration: schedule.duration,
+    };
   },
 
-  async upsertSchedule({ payload, keyName }) {
+  async upsert({ payload, keyName }) {
     let method = "post";
     if (payload[keyName]) {
       method = "put";
     }
+
+    if (payload.departureTime) {
+      payload.departureTime = new Date(payload.departureTime)
+        .toISOString()
+        .slice(0, 16);
+    }
+
     let response = await axios[method]("/schedule", payload);
 
     return response;
   },
 
-  async findScheduleById(id) {
-    console.log("run");
+  async findById(id) {
     let response = await axios.get(`/schedule/one/${id}`);
     return response.data;
   },
 
-  async deleteScheduleById(id) {
+  async deleteById(id) {
     let response = await axios.delete(`/schedule/${id}`);
     return response;
   },

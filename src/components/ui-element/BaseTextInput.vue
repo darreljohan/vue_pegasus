@@ -6,7 +6,8 @@
                 v-model="model" 
                 class="base-textbox" 
                 type="text" 
-                @change="changeEvent"    
+                @change="changeEvent" 
+                :disabled="isDisabled"  
             >
              <base-validation-message 
                 v-for="message of validationMessages"
@@ -24,7 +25,8 @@ const props = defineProps([
     'label',
     'modelValue',
     'changeEvent',
-    'validationMessages'
+    'validationMessages',
+    'isDisabled'
 ])
 
 const model = defineModel()

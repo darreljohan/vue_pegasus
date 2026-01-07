@@ -9,6 +9,8 @@ import BaseCardRow from './components/ui-element/BaseCardRow.vue';
 import BaseDialog from './components/ui-element/BaseDialog.vue';
 import BasePagination from './components/ui-element/BasePagination.vue';
 import BaseValidationMessage from './components/ui-element/BaseValidationMessage.vue';
+import BaseTextAreaInput from './components/ui-element/BaseTextAreaInput.vue';
+import BaseDeleteDialog from './components/ui-element/BaseDeleteDialog.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -37,6 +39,8 @@ app.component('base-card-row', BaseCardRow)
 app.component('base-dialog', BaseDialog)
 app.component('base-pagination', BasePagination)
 app.component('base-validation-message', BaseValidationMessage)
+app.component('base-textarea-input', BaseTextAreaInput)
+app.component('base-delete-dialog', BaseDeleteDialog)
 
 app.mount('#app')
 
