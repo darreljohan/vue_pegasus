@@ -24,6 +24,7 @@ const router = createRouter({
                 {
                     component: SchedulePage,
                     path: '/schedule',
+                    alias: '/',
                     children:[
                         {
                             component: ScheduleUpsertForm,
