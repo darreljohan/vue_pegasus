@@ -37,7 +37,7 @@ export default{
         ]);
 
         let arrivalTime = new Date(schedule.departureTime);
-        
+
         arrivalTime = new Date(
             arrivalTime.setMinutes(arrivalTime.getMinutes() + schedule.duration)
         );
@@ -63,7 +63,6 @@ export default{
                 username : username
             }
         })
-        debugger
     },
     async refreshTitleDetail(){
       let response = await axios.get(`/passenger/one/${this.filter.username}`)

@@ -5,12 +5,12 @@
             <base-text-input
                 :label="'First Name'"
                 v-model="filter.firstName"
-                :changeEvent="changes"
+                :changeEvent="onChange"
             ></base-text-input> 
             <base-text-input
                 :label="'Last Name'"
                 v-model="filter.lastName"
-                :changeEvent="changes"
+                :changeEvent="onChange"
             ></base-text-input>
         </div>
     </base-card>
@@ -23,7 +23,7 @@ import usePassengerStore from '../../store/passenger/passenger-store';
 const passengerStore = usePassengerStore();
 const {filter} = storeToRefs(passengerStore)
 
-const changes = async () => {
+const onChange = async () => {
     debugger
     passengerStore.page = 1;
     await passengerStore.refreshGrid();

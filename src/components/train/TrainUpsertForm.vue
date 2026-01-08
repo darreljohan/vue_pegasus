@@ -44,7 +44,6 @@ const trainStore = useTrainStore()
 
 const props = defineProps(["code"]);
 
-debugger
 const { input, validation, submit } = useUpsert({
   store: trainStore,
   idKey: 'code',

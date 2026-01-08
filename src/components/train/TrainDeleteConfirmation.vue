@@ -2,7 +2,7 @@
   <base-delete-dialog
     :title="'Delete Train'"
     :closeLink="'/train'"
-    :deleteHandler="deleteHandler"
+    :deleteHandler="()=>{deleteHandler({code})}"
   >
     <p>
       Are you sure you want to delete this train? You can't delete this train while there is one or more schedule is exist for this train.
@@ -21,7 +21,6 @@ const props = defineProps(["code"]);
 
 const {deleteHandler} = useDelete({
   store: trainStore,
-  id: props.code,
   closeLink: "/train",
   router
 })

@@ -5,23 +5,23 @@
       <base-text-input
         :label="'Train Name'"
         v-model="filter.trainName"
-        :changeEvent="changes"
+        :changeEvent="onChange"
       ></base-text-input>
       <base-text-input
         :label="'Dept Station'"
         v-model="filter.deptStation"
-        :changeEvent="changes"
+        :changeEvent="onChange"
       ></base-text-input>
       <base-date-input
         :label="'Dept. Time'"
         v-model="filter.deptTime"
-        :changeEvent="changes"
+        :changeEvent="onChange"
       ></base-date-input>
       <base-dropdown-input
         :label="'Class'"
         v-model="filter.trainClass"
         :options="options"
-        :changeEvent="changes"
+        :changeEvent="onChange"
       ></base-dropdown-input>
     </div>
   </base-card>
@@ -38,7 +38,7 @@ const { filter } = storeToRefs(scheduleStore);
 
 let options = ref([]);
 
-let changes = () => {
+let onChange = () => {
   scheduleStore.page = 1;
   scheduleStore.refreshGrid();
 };

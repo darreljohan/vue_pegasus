@@ -89,9 +89,6 @@ export default {
       router.push('/notFound')
       return
     }
-
-    debugger
-
     return response.data;
   },
 

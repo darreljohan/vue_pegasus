@@ -81,10 +81,8 @@ const { input, validation, submit } = useUpsert({
 
 
 onBeforeMount(async () => {
-  console.log("run")
   if (props.id !== "") {
     let data = await scheduleStore.findById(props.id);
-    debugger
     data.departureTime = data.departureTime.split('T')[0]
     input.value = data
   }

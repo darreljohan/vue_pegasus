@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import Swal from "sweetalert2";
 export default {
     async getTrainDropdown(){
         let trainDropdownResponse = await axios.get(`/train/dropdown`)
@@ -27,15 +27,25 @@ export default {
         let method = "post";
         
         if (payload[keyName]) {
-        method = "put";
+            method = "put";
         }
 
         let response = await axios[method]("/train", payload);
 
         return response;
     },
-    async deleteById(code){
+    async deleteById({code}){
         let response = await axios.delete(`/train/${code}`)
+
+        if(response.status == 409){
+            Swal.fire({
+                title:'Conflict Error',
+                text:'Train still have one or more schedule exist',
+                allowOutsideClick:false,
+                confirmButtonColor:  '#006266'
+            });
+        }
+        
         return response
     }
 }
