@@ -2,7 +2,7 @@
   <base-delete-dialog
     :title="'Delete Confirmation'"
     :closeLink="'/passenger'"
-    :deleteHandler="deleteHandler"
+    :deleteHandler="()=>{deleteHandler({username})}"
   >
     <p>
         Are you sure you want to delete this passenger? All this passenger's schedules will also be removed.
@@ -22,16 +22,10 @@ const props = defineProps(["username"]);
 
 const {deleteHandler} = useDelete({
   store: passengerStore,
-  id: props.username,
   closeLink: "/passenger",
   router
 })
 
-// const deleteHandler = async () => {
-//   await passengerStore.deleteById(props.username);
-//   await passengerStore.refreshGrid();
-//   router.push("/passenger");
-// };
 </script>
 
 <style  scoped>

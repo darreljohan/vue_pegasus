@@ -1,8 +1,9 @@
-export default ({store, id, closeLink, router})=>{
-    const deleteHandler = async()=>{
-        await store.deleteById(id)
+export default ({store, closeLink, router})=>{
+    const deleteHandler = async(id)=>{
+        debugger
+        await store.deleteById({...id})
         await store.refreshGrid()
-        router.push(closeLink)
+        router?router.push(closeLink):""
     }
     return{
         deleteHandler

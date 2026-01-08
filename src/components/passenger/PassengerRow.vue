@@ -27,7 +27,7 @@
                 <span class="label">Address</span>
                 <span class="value">{{ passenger.address }}</span>
             </div>
-            <div class="button-container">
+            <base-button-container>
                 <base-button
                     :isLink="true"
                     :link="`/passenger/form/${passenger.username}`"
@@ -44,12 +44,12 @@
                 </base-button>
                 <base-button
                     :isLink="true"
-                    :link="`/passenger`"
+                    :link="`/boarding/${passenger.username}`"
                 >
                     <i class="fas fa-train"></i>
                     <span>Board</span>
                 </base-button>
-            </div>
+            </base-button-container>
         </template>
    </base-card-row>
 </template>
@@ -59,7 +59,4 @@ const props = defineProps(['passenger'])
 </script>
 
 <style scoped>
-.button-container {
-  text-align: right;
-}
 </style>

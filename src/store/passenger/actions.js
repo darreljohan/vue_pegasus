@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../../router";
 
 export default {
     async refreshGrid(){
@@ -23,12 +24,16 @@ export default {
     },
 
     async findById(username){
-        let response = await axios.get(`/passenger/one${username?`/${username}`:''}`)
+        // let response = await axios.get(`/passenger/one${username?`/${username}`:''}`)
+        let response = await axios.get(`/passenger/one/${username}`)
+        if(response.data == ''){
+            router.push('/notFound')
+            return
+        }
         return response.data
     },
 
-    async deleteById(username){
-        debugger
+    async deleteById({username}){
         let response = await axios.delete(`/passenger/${username}`)
         return response
     }

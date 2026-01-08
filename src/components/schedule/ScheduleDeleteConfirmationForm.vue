@@ -2,9 +2,9 @@
   <base-delete-dialog
     :title="'Delete Schedule'"
     :closeLink="'/schedule'"
-    :deleteHandler="deleteHandler"
+    :deleteHandler="()=>{deleteHandler({id})}"
   >
-  <p>
+    <p>
       Are you sure you want to delete this schedule? All this schedule's
       passengers will also be removed.
     </p>
@@ -15,6 +15,7 @@
 import { useRouter } from "vue-router";
 import useScheduleStore from "../../store/schedule/schedule-store";
 import useDelete from "../../hooks/delete"
+import { onBeforeMount } from "vue";
 
 const scheduleStore = useScheduleStore();
 const router = useRouter();
@@ -22,16 +23,14 @@ const props = defineProps(["id"]);
 
 const {deleteHandler} = useDelete({
   store: scheduleStore,
-  id: props.id,
   closeLink: "/schedule",
   router
 })
 
-// const deleteEvent = async () => {
-//   await scheduleStore.deleteById(props.id);
-//   await scheduleStore.refreshGrid();
-//   router.push("/schedule");
-// };
+onBeforeMount(async ()=>{
+    await scheduleStore.findById(props.id);
+})
+
 </script>
 
 <style scoped>

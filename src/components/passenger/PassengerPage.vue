@@ -28,12 +28,13 @@ import { storeToRefs } from 'pinia';
 const passengerStore = usePassengerStore()
 const { grid } = storeToRefs(passengerStore)
 
-onBeforeMount(()=>{
-    passengerStore.refreshGrid()
+onBeforeMount(async ()=>{
+    await passengerStore.refreshGrid()
 })
 </script>
 
 <style scoped>
+
 main {
   width: 65%;
   margin: 20px auto;

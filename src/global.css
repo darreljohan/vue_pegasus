@@ -1,23 +1,4 @@
-<template>
-    <router-view></router-view>
-</template>
-
-<script setup>
-import { onBeforeMount } from 'vue';
-import usePassengerStore from './store/passenger/passenger-store'
-
-const passengerStore = usePassengerStore()
-
-onBeforeMount(async ()=>{
-    await passengerStore.refreshGrid()
-})
-
-</script>
-
-
-
-<style>
-@font-face {
+font-face {
     font-family: 'Quicksand';
     src: url('./assets/fonts/Quicksand-Regular.ttf') format('truetype');
 }
@@ -59,4 +40,3 @@ body{
         min-width: 340px;
     }
 }
-</style>

@@ -38,7 +38,7 @@
             :validationMessages="validation?.address"
         >
         </base-textarea-input>
-        <div class="form-button-container">
+        <base-button-container>
             <base-button @click="submit">
                 <i class="fas fa-save"></i>
                 <span>Save</span>
@@ -47,7 +47,7 @@
                 <i class="fas fa-times"></i>
                 <span>Cancel</span>
             </base-button>
-         </div>
+        </base-button-container>
     </base-dialog>
 </template>
 
@@ -70,9 +70,7 @@ let genderOptions = [
     }
 ]
 
-
-
-const {input, validation, submit} = useUpsert({store: passengerStore, id: props.username, closeLink:'/passenger'})
+const {input, validation, submit} = useUpsert({store: passengerStore, idKey: 'username', closeLink:'/passenger'})
 
 onBeforeMount(async ()=>{
     if (props.username !== '') {

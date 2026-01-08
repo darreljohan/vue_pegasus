@@ -5,9 +5,11 @@
                <span>PEGASUS</span>
           </template>
           <template v-slot:value>
-               <base-button :isLink="true" :link="'/schedule'" >Schedules</base-button>
-               <base-button :isLink="true" :link="'/passenger'" >Passengers</base-button>
-               <base-button :isLink="true" :event="()=>{}" >Train</base-button>
+               <base-button-container>
+                    <base-button :isLink="true" :link="'/schedule'" >Schedules</base-button>
+                    <base-button :isLink="true" :link="'/passenger'" >Passengers</base-button>
+                    <base-button :isLink="true" :link="'/train'" >Train</base-button>
+               </base-button-container>
           </template>
      </base-header>  
 </template>

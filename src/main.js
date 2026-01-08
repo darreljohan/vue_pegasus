@@ -11,6 +11,8 @@ import BasePagination from './components/ui-element/BasePagination.vue';
 import BaseValidationMessage from './components/ui-element/BaseValidationMessage.vue';
 import BaseTextAreaInput from './components/ui-element/BaseTextAreaInput.vue';
 import BaseDeleteDialog from './components/ui-element/BaseDeleteDialog.vue';
+import BaseTable from './components/ui-element/BaseTable.vue';
+import BaseButtonContainer from './components/ui-element/BaseButtonContainer.vue';
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -19,6 +21,7 @@ import "./assets/css/font-awesome.css";
 import router from './router.js'
 import { createPinia } from 'pinia';
 import configueAxios from './axios-config.js';
+import './global.css'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -41,6 +44,8 @@ app.component('base-pagination', BasePagination)
 app.component('base-validation-message', BaseValidationMessage)
 app.component('base-textarea-input', BaseTextAreaInput)
 app.component('base-delete-dialog', BaseDeleteDialog)
+app.component('base-table', BaseTable)
+app.component('base-button-container', BaseButtonContainer)
 
 app.mount('#app')
 

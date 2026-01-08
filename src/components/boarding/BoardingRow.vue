@@ -37,35 +37,26 @@
             </div>
             <base-button-container>
                 <base-button
-                    :isLink="true"
-                    :link="`/schedule/form/${schedule.id}`"
+                    :event="async ()=>{ await onAssign()}"
                 >
-                    <i class="fas fa-edit"></i>
-                    <span>Update</span>
-                </base-button>
-                <base-button
-                    :isLink="true"
-                    :link="`/schedule/delete/${schedule.id}`"
-                >
-                    <i class="fas fa-trash"></i>
-                    <span>Remove</span>
-                </base-button>
-                <base-button 
-                    :isLink="true"
-                    :link="`/passengerOnBoard/${schedule.id}`"
-                >
-                    <i class="fas fa-users"></i>
-                    <span>Passengers</span>
+                    <span>Assign</span>
                 </base-button>
             </base-button-container>
         </template>
     </base-card-row>
 </template>
-
 <script setup>
-import { onBeforeMount } from 'vue';
+import { storeToRefs } from "pinia";
+import useBoardingStore from "../../store/boarding/boarding-store";
 
+const boardingStore = useBoardingStore()
+const {filter} = storeToRefs(boardingStore)
 const props = defineProps(['schedule'])
+
+const onAssign = async ()=>{
+    await boardingStore.assign({scheduleId : props.schedule.id, username: filter.value.username})
+    await boardingStore.refreshGrid()
+}
 
 </script>
 

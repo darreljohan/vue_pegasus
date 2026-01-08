@@ -1,9 +1,7 @@
 import axios from "axios";
+import router from "../../router";
 
 export default {
-  triggerTest() {
-    console.log(this.triggerTest);
-  },
   async refreshGrid() {
     console.log("refresh");
     const response = await axios.get(`/schedule`, {
@@ -86,10 +84,18 @@ export default {
 
   async findById(id) {
     let response = await axios.get(`/schedule/one/${id}`);
+
+    if(response.data == ''){
+      router.push('/notFound')
+      return
+    }
+
+    debugger
+
     return response.data;
   },
 
-  async deleteById(id) {
+  async deleteById({id}) {
     let response = await axios.delete(`/schedule/${id}`);
     return response;
   },

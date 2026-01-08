@@ -25,7 +25,7 @@ const {filter} = storeToRefs(passengerStore)
 
 const changes = async () => {
     debugger
-  passengerStore.page = 1;
+    passengerStore.page = 1;
     await passengerStore.refreshGrid();
 };
 

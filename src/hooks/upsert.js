@@ -2,7 +2,7 @@ import { ref } from "vue";
 import router from "../router";
 
 export default ({
-    store, id, closeLink
+    store, idKey, closeLink
 })=>{
     const input = ref({});
     const validation = ref({});
@@ -10,8 +10,8 @@ export default ({
     const submit = async()=>{
         validation.value = {};
         let response = await store.upsert({
-            payload: input.value,
-            keyName: 'username'
+            payload: {...input.value},
+            keyName: idKey
         })
 
         if (response.status == 422) {

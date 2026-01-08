@@ -6,6 +6,13 @@ import ScheduleDeleteConfirmationForm from "./components/schedule/ScheduleDelete
 import PassengerPage from "./components/passenger/PassengerPage.vue";
 import PassengerUpsertForm from "./components/passenger/PassengerUpsertForm.vue";
 import PassengerDeleteConfirmationForm from "./components/passenger/PassengerDeleteConfirmationForm.vue";
+import TrainPage from "./components/train/TrainPage.vue";
+import TrainUpsertForm from "./components/train/TrainUpsertForm.vue";
+import TrainDeleteConfirmation from "./components/train/TrainDeleteConfirmation.vue";
+import PassengerOnBoardPage from "./components/passengerOnBoard/PassengerOnBoardPage.vue";
+import BoardingPage from "./components/boarding/BoardingPage.vue";
+import NotFound from "./components/error/NotFound.vue";
+import axios from "axios";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,6 +28,10 @@ const router = createRouter({
                         {
                             component: ScheduleUpsertForm,
                             path: '/schedule/form/:id?',
+                            meta:{
+                                keyName : 'id',
+                                entity : 'schedule'
+                            },
                             props: true
                         },
                         {
@@ -46,8 +57,37 @@ const router = createRouter({
                         }
                     ]
                 },
-                
+                {
+                    component: TrainPage,
+                    path: '/train',
+                    children:[
+                        {
+                            component: TrainUpsertForm,
+                            path: '/train/form/:code?',
+                            props:true
+                        },
+                        {
+                            component: TrainDeleteConfirmation,
+                            path: '/train/delete/:code',
+                            props: true
+                        }
+                    ]
+                },
+                {
+                    component: PassengerOnBoardPage,
+                    path: '/passengerOnBoard/:id',
+                    props: true
+                },
+                {
+                    component: BoardingPage,
+                    path: '/boarding/:username',
+                    props: true
+                },
             ]
+        },
+        {
+            component: NotFound,
+            path: '/:notFound(.*)'
         }
     ]
 })

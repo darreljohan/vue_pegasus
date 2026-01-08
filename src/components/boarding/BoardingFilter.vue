@@ -30,21 +30,21 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { storeToRefs } from "pinia";
-import useScheduleStore from "../../store/schedule/schedule-store";
+import useBoardingStore from "../../store/boarding/boarding-store";
 
-const scheduleStore = useScheduleStore();
+const boardingStore = useBoardingStore();
 
-const { filter } = storeToRefs(scheduleStore);
+const { filter } = storeToRefs(boardingStore);
 
 let options = ref([]);
 
 let changes = () => {
-  scheduleStore.page = 1;
-  scheduleStore.refreshGrid();
+  boardingStore.page = 1;
+  boardingStore.refreshGrid();
 };
 
 onBeforeMount(async () => {
-  options.value = await scheduleStore.getTrainClassDropdown();
+  options.value = await boardingStore.getTrainClassDropdown();
 });
 
 </script>

@@ -2,17 +2,22 @@ import { defineStore } from "pinia";
 import actions from "./actions";
 
 const useStore = defineStore(
-    'trainStore',
+    'boardingStore',
     {
         state(){
             return{
                 grid : [],
-                pagination : {
+                titleDetail:null,
+                pagination:{
                     page: 1,
                     totalPages: null,
                 },
-                filter : {
-                    name:null
+                filter:{
+                    username:null,
+                    trainName: null,
+                    deptStation: null,
+                    deptTime : null,
+                    trainClass: null
                 }
             }
         },
