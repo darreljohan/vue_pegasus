@@ -6,8 +6,8 @@
                 <th v-for="header of headerList" :key="header.key">{{ header.label }}</th>
             </tr>
         </thead>
-        <tbody v-for="data in datas">
-            <tr>
+        <tbody >
+            <tr v-for="data in datas">
                 <slot name="customCell" :data="data"></slot>
                 <td 
                     v-for="header of headerList"

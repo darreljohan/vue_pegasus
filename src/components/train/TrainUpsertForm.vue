@@ -50,6 +50,14 @@ const { input, validation, submit } = useUpsert({
   closeLink: "/train",
 });
 
+input.value = {
+    code: null,
+    name: null,
+    maxPassengers: null,
+    description: null
+
+}
+
 onBeforeMount(async ()=>{
     if (props.code !== "") {
         input.value = await trainStore.findById(props.code);

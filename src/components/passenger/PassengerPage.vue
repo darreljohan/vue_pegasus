@@ -24,12 +24,17 @@ import PassengerFilter from './PassengerFilter.vue';
 import PassengerPagination from './PassengerPagination.vue';
 import usePassengerStore from '../../store/passenger/passenger-store';
 import { storeToRefs } from 'pinia';
+import { useRoute } from 'vue-router';
 
 const passengerStore = usePassengerStore()
 const { grid } = storeToRefs(passengerStore)
+const route = useRoute()
+
+debugger
 
 onBeforeMount(async ()=>{
     await passengerStore.refreshGrid()
+
 })
 </script>
 

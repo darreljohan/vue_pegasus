@@ -1,5 +1,5 @@
 <template>
-  <base-title :title="'Schedules'"></base-title>
+  <!-- <base-title :title="'Schedules'"></base-title> -->
   <main>
     <base-button :isLink="true" , :link="'/schedule/form'">
       <i class="fas fa-plus"></i>
@@ -32,6 +32,8 @@ const { grid } = storeToRefs(scheduleStore);
 onBeforeMount(() => {
   scheduleStore.refreshGrid();
 });
+
+
 
 </script>
 

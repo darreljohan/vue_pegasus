@@ -7,8 +7,23 @@ export default ({
     const input = ref({});
     const validation = ref({});
 
+    const emptyFieldChecker = ()=>{
+        for( const [key, value] of  Object.entries(input.value)){
+            if(value == null){
+                debugger
+                validation.value[key]??= [];
+                validation.value[key].push("Cannot be empty")
+            }
+        }
+        return Object.keys(validation.value).lenght > 0 ||  Object.keys(validation.value).lenght == undefined
+    }
+
     const submit = async()=>{
+        debugger;
         validation.value = {};
+        if(!emptyFieldChecker()){
+            return
+        };
         let response = await store.upsert({
             payload: {...input.value},
             keyName: idKey

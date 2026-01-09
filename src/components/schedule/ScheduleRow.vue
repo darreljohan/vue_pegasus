@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <span class="label">Dept. Time</span>
-                <span class="value">{{ schedule.deptTime }}</span>
+                <span class="value">{{ formatDateID(schedule.arrTime) }}</span>
             </div>
             <div class="row">
                 <span class="label">Arr. Station</span>
@@ -33,7 +33,7 @@
             </div>
             <div class="row">
                 <span class="label">Arr. Time</span>
-                <span class="value">{{ schedule.arrTime }}</span>
+                <span class="value">{{ formatDateID(schedule.arrTime) }}</span>
             </div>
             <base-button-container>
                 <base-button
@@ -66,6 +66,22 @@
 import { onBeforeMount } from 'vue';
 
 const props = defineProps(['schedule'])
+
+function formatDateID(date) {
+  const parts = new Intl.DateTimeFormat("id-ID", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(date);
+
+  const get = type => parts.find(p => p.type === type)?.value;
+
+  return `${get("weekday")}, ${get("day")} ${get("month")} ${get("year")} - ${get("hour")}:${get("minute")}`;
+}
 
 </script>
 

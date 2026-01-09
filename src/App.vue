@@ -4,13 +4,9 @@
 
 <script setup>
 import { onBeforeMount } from 'vue';
-import usePassengerStore from './store/passenger/passenger-store'
+import { useRoute } from 'vue-router';
 
-const passengerStore = usePassengerStore()
 
-onBeforeMount(async ()=>{
-    await passengerStore.refreshGrid()
-})
 
 </script>
 

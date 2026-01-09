@@ -70,7 +70,7 @@ export default {
     if (payload[keyName]) {
       method = "put";
     }
-
+    
     if (payload.departureTime) {
       payload.departureTime = new Date(payload.departureTime)
         .toISOString()

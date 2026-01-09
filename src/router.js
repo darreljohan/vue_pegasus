@@ -12,7 +12,9 @@ import TrainDeleteConfirmation from "./components/train/TrainDeleteConfirmation.
 import PassengerOnBoardPage from "./components/passengerOnBoard/PassengerOnBoardPage.vue";
 import BoardingPage from "./components/boarding/BoardingPage.vue";
 import NotFound from "./components/error/NotFound.vue";
+import useStore from "./store/title/title-store";
 import axios from "axios";
+import usePOBStore from "./store/passengerOnBoard/passengerOnBoard-store";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -24,27 +26,33 @@ const router = createRouter({
                 {
                     component: SchedulePage,
                     path: '/schedule',
+                    meta:{
+                        test: "test meta"
+                    },
+                    beforeEnter(){
+                        const titleStore = useStore()
+                        titleStore.title = 'Schedule'
+                    },
                     alias: '/',
                     children:[
                         {
                             component: ScheduleUpsertForm,
                             path: '/schedule/form/:id?',
-                            meta:{
-                                keyName : 'id',
-                                entity : 'schedule'
-                            },
                             props: true
                         },
                         {
                             component: ScheduleDeleteConfirmationForm,
                             path: '/schedule/delete/:id',
-                            props: true
+                            props: true,
                         }
                     ] 
                 },
                 {
                     component: PassengerPage,
                     path: '/passenger',
+                    meta:{
+                        test: "test meta"
+                    },
                     children:[
                         {
                             component: PassengerUpsertForm,
@@ -77,7 +85,25 @@ const router = createRouter({
                 {
                     component: PassengerOnBoardPage,
                     path: '/passengerOnBoard/:id',
-                    props: true
+                    props: true,
+                    meta:{
+                        test: "test meta"
+                    },
+                    async beforeEnter(to , from){
+                        const titleStore = useStore()
+                        const pobStore = usePOBStore()
+                        let response = await axios.get(`/schedule/one/${to.params.id}`)
+
+                        let [train, trainStation] = await Promise.all([
+                            pobStore.enrichTrainCode(response.data.trainCode),
+                            pobStore.enrichTrainStation(response.data.arrivalStationId)
+                        ])
+                        
+                        let titleDetail = `${train.name} to ${trainStation.name}`
+
+                        titleStore.title = 'Passenger Of'
+                        titleStore.detail = titleDetail
+                    },
                 },
                 {
                     component: BoardingPage,

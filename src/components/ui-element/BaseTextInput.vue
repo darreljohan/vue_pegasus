@@ -31,6 +31,9 @@ const props = defineProps([
 
 const model = defineModel()
 
+onBeforeMount(()=>{
+    console.log(props)
+})
 
 </script>
 
