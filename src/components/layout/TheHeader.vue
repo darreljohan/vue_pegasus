@@ -9,6 +9,7 @@
                     <base-button :isLink="true" :link="'/schedule'" >Schedules</base-button>
                     <base-button :isLink="true" :link="'/passenger'" >Passengers</base-button>
                     <base-button :isLink="true" :link="'/train'" >Train</base-button>
+                    <base-button :isLink="true" :link="'/playground'" >Playground</base-button>
                </base-button-container>
           </template>
      </base-header>  

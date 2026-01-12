@@ -1,5 +1,5 @@
 <template>
-    <base-title :title="'Passenger'"></base-title>
+    <base-title :title="'Train'"></base-title>
     <main>
         <base-button :isLink="true" , :link="'/train/form'">
             <i class="fas fa-plus"></i>
@@ -13,10 +13,14 @@
             >
                 <template v-slot:customHeader>
                     <th>Action</th>
+                    <th>Code</th>
                 </template>
                 <template v-slot:customCell="slotProps">
-                    <base-button :isLink="true" :link="`/train/form/${slotProps.data.code}`">Update</base-button>
-                    <base-button :isLink="true" :link="`/train/delete/${slotProps.data.code}`">Remove</base-button>
+                    <td>
+                      <base-button :isLink="true" :link="`/train/form/s${slotProps.data.code}`">Update</base-button>
+                      <base-button :isLink="true" :link="`/train/delete/${slotProps.data.code}`">Remove</base-button>
+                    </td>
+                    <td @click="()=>{storeInLocal(slotProps.data)}">{{ slotProps.data.code }}</td>
                 </template>
             </base-table>
         </base-card>
@@ -31,7 +35,11 @@
         </base-card>
     </main>
     <teleport to="body">
-        <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
   </teleport>
 </template>
 
@@ -52,6 +60,14 @@ const headerList = ref([
 
 let {grid, pagination} = storeToRefs(trainStore)
 const { selectPage, firstPage, lastPage } = usePagination(trainStore);
+
+const storeInLocal = (data)=>{
+  let dataCache = localStorage.getItem('dataCache')
+  dataCache = JSON.parse(dataCache)
+  dataCache??=[]
+  dataCache.push(JSON.stringify(data))
+  localStorage.setItem('dataCache', JSON.stringify(dataCache))
+}
 
 onBeforeMount(async ()=>{
     await trainStore.refreshGrid()

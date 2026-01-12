@@ -7,13 +7,20 @@
                     <i class="fas fa-times"></i>
                 </router-link>
             </header>
-            <slot></slot>
+            <keep-alive>
+                <slot></slot>
+            </keep-alive>
         </div>
     </div>
 </template>
 
 <script setup>
+import { onActivated, onBeforeUnmount, onDeactivated } from 'vue'
+
 const props = defineProps(['link', 'title'])
+
+console.log("its created")
+
 </script>
 
 <style scoped>

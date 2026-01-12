@@ -15,6 +15,7 @@ import NotFound from "./components/error/NotFound.vue";
 import useStore from "./store/title/title-store";
 import axios from "axios";
 import usePOBStore from "./store/passengerOnBoard/passengerOnBoard-store";
+import PlaygroundPage from "./components/playground/playgroundPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -110,6 +111,11 @@ const router = createRouter({
                     path: '/boarding/:username',
                     props: true
                 },
+                {
+                    component: PlaygroundPage,
+                    path: '/playground',
+                    props: true
+                }
             ]
         },
         {

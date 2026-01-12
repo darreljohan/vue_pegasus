@@ -38,7 +38,7 @@
 <script setup>
 import useTrainStore from '../../store/train/train-store';
 import useUpsert from "../../hooks/upsert";
-import { onBeforeMount } from 'vue';
+import { onActivated, onBeforeMount, onBeforeUnmount, onDeactivated } from 'vue';
 
 const trainStore = useTrainStore()
 
@@ -62,6 +62,14 @@ onBeforeMount(async ()=>{
     if (props.code !== "") {
         input.value = await trainStore.findById(props.code);
     }
+})
+
+onBeforeUnmount(()=>{
+    console.log("Its Before Unmount")
+})
+
+onDeactivated(()=>{
+    console.log("Its on deactivated")
 })
 
 </script>

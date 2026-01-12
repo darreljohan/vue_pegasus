@@ -2,7 +2,7 @@ import { ref } from "vue";
 import router from "../router";
 
 export default ({
-    store, idKey, closeLink
+    store, idKey, closeLink, filter
 })=>{
     const input = ref({});
     const validation = ref({});
@@ -16,6 +16,17 @@ export default ({
             }
         }
         return Object.keys(validation.value).lenght > 0 ||  Object.keys(validation.value).lenght == undefined
+    }
+
+    //filter is an callback
+    //run all the callback, if a singl error happen, change status to false, it would keep run all the filter
+    const customValidation = (filter)=>{
+        for (const [key, value] of Object.entries(input.value)){
+            if (!value()){
+                validation.value.otherMessages ??= [];
+                validation.value.otherMessages.push(validate.defaultMessage);
+            }
+        }
     }
 
     const submit = async()=>{
